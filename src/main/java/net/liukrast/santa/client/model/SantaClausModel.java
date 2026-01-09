@@ -264,7 +264,10 @@ public class SantaClausModel extends EntityModel<SantaClaus> implements ArmedMod
                 beard.y += Mth.sin(ageInTicks);
             }
             case LOOTING -> {
-
+                right_arm.xRot = right_arm.xRot+ Mth.cos(ageInTicks*0.2f)*0.1f;
+                right_arm.yRot = right_arm.yRot + Mth.sin(ageInTicks*0.5f)*0.1f;
+                left_arm.xRot = left_arm.xRot+ Mth.cos(ageInTicks*0.2f)*0.1f;
+                left_arm.yRot = left_arm.yRot - Mth.sin(ageInTicks*0.5f)*0.1f;
             }
             case SLEEPING -> {
                 body.y+=8;

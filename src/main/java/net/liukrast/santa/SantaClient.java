@@ -34,7 +34,6 @@ public class SantaClient {
         eventBus.addListener(SantaEntityTypes::registerRenderers);
         eventBus.addListener(SantaBlockEntityTypes::registerRenderers);
         eventBus.addListener(SantaBlockEntityTypes::fmlClientSetup);
-        container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         container.registerExtensionPoint(IConfigScreenFactory.class, (modContainer, parent) -> new BaseConfigScreen(parent, modContainer.getModId()));
         eventBus.addListener(SantaMenuTypes::registerMenuScreens);
         eventBus.addListener(this::fMLClientSetup);

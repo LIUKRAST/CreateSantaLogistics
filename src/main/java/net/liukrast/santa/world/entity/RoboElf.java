@@ -344,7 +344,7 @@ public class RoboElf extends PathfinderMob implements DeployerGoggleInformation,
                 unstressCooldown = SantaConfig.ELF_UNSTRESS_COOLDOWN.getAsInt();
             }
 
-            if (getStress() > 70 /* TODO: CONFIG VALUE */ && getCharge() > 0) {
+            if(getStress() > SantaConfig.ELF_OVERSTRESS_PERCENTAGE.getAsInt() && getCharge() > 0) {
                 extractCharge(0.1f);
                 Vec3 m = VecHelper.offsetRandomly(new Vec3(0, .25f, 0), getRandom(), .125f);
                 ((ServerLevel) level()).sendParticles(ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, getX(), getY(), getZ(), 1, m.x, m.y, m.z, .01f);
@@ -374,7 +374,7 @@ public class RoboElf extends PathfinderMob implements DeployerGoggleInformation,
 
     public boolean isStationValid() {
         assert chargeStation != null;
-        return !chargeStation.isRemoved() && this.distanceToSqr(chargeStation.getBlockPos().relative(chargeStation.getBlockState().getValue(ElfChargeStationBlock.HORIZONTAL_FACING)).getCenter()) < 0.5 /* TODO: Configurable? */;
+        return !chargeStation.isRemoved() && this.distanceToSqr(chargeStation.getBlockPos().relative(chargeStation.getBlockState().getValue(ElfChargeStationBlock.HORIZONTAL_FACING)).getCenter()) < 0.5;
     }
 
     @Override
@@ -444,8 +444,11 @@ public class RoboElf extends PathfinderMob implements DeployerGoggleInformation,
             level().playSound(player, blockPosition(), SoundEvents.AXE_WAX_OFF, SoundSource.BLOCKS, 1.0F, 1.0F);
             level().levelEvent(player, 3004, blockPosition(), 0);
             stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
+            if(!level().isClientSide) {
+                Vec3 m = VecHelper.offsetRandomly(new Vec3(0, 0.25f, 0), level().random, .125f);
+                ((ServerLevel)level()).sendParticles(ParticleTypes.SCRAPE, getX(), getY(), getZ(), 10, m.x, m.y, m.z, 0.1);
+            }
             return InteractionResult.SUCCESS;
-            //TODO: Particles
         } else if(!getOxidation().isActive()) {
             return InteractionResult.CONSUME;
         } else if(player.isShiftKeyDown() && insertCharge(1)<=0) {

@@ -82,7 +82,7 @@ public class Santa {
         NeoForge.EVENT_BUS.addListener(this::loadLevel);
         eventBus.addListener(SantaContraptionMovementSettings::init);
         eventBus.register(this);
-        container.registerConfig(ModConfig.Type.COMMON, SantaConfig.SPEC);
+        container.registerConfig(ModConfig.Type.SERVER, SantaConfig.SPEC);
         SantaFluids.init();
         SantaRecipeTypes.init(eventBus);
         SantaRecipeSerializers.init(eventBus);

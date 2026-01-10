@@ -35,8 +35,6 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.damagesource.DamageContainer;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.system.NonnullDefault;
@@ -48,9 +46,7 @@ import java.util.UUID;
 
 @NonnullDefault
 public class SantaClaus extends PathfinderMob implements DeployerGoggleInformation {
-    @OnlyIn(Dist.CLIENT)
     public float animationTime;
-    @OnlyIn(Dist.CLIENT)
     public State lastFoundState = State.IDLE;
 
     private static final EntityDataAccessor<Integer> STATE_ID = SynchedEntityData.defineId(SantaClaus.class, EntityDataSerializers.INT);

@@ -30,6 +30,7 @@ public class SantaDockScreen extends AbstractSimiContainerScreen<SantaDockMenu> 
         super.init();
         String old = editBox == null ? menu.address : editBox.getValue();
         editBox = new EditBox(font, leftPos+28, topPos+68, 130, 20, Component.empty());
+        assert old != null;
         editBox.setValue(old);
         editBox.setMaxLength(100);
         editBox.setTextColor(0xFF545454);

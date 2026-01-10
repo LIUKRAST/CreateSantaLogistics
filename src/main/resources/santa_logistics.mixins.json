@@ -23,7 +23,6 @@
 	"ValueSettingsInputHandlerMixin"
   ],
   "client": [
-	"PackageRendererMixin",
 	"WifiEffectPacketMixin"
   ],
   "injectors": {

@@ -139,7 +139,7 @@ public class FrostburnEngineBlockEntity extends GeneratingKineticBlockEntity {
         int cfgMax = SantaConfig.FROSTBURN_EXPLODE.getAsInt();
         if(!creative) temperature = (int)Mth.clamp(temperature + overclock.value* SantaConfig.FROSTBURN_TEMPERATURE_INCREASE.getAsDouble(), 0, cfgMax);
         assert level != null;
-        if(temperature >= cfgMax && !level.isClientSide) explode();
+        if(temperature >= cfgMax && !level.isClientSide && !creative) explode();
         sendData();
     }
 

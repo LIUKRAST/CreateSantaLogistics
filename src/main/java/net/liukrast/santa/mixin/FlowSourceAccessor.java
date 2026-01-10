@@ -7,9 +7,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-/**
- * May be replaced with a deployer API feature
- * */
+@Deprecated
 @Mixin(FlowSource.class)
 public interface FlowSourceAccessor {
 

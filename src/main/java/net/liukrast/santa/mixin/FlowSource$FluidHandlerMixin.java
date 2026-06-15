@@ -41,7 +41,7 @@ public abstract class FlowSource$FluidHandlerMixin extends FlowSource {
             BlockPos pos = ((FlowSourceAccessor)this).getLocation().getConnectedPos();
             if(level instanceof ServerLevel serverLevel) {
                 if(SantaConstants.fluidCapabilityExtension(level.getBlockState(pos).getBlock()))
-                    fluidHandlerCache = ICapabilityProvider.of(BlockCapabilityCache.create(
+                    fluidHandlerCache = ICapabilityProvider.of(r -> BlockCapabilityCache.create(
                         Capabilities.FluidHandler.BLOCK,
                         serverLevel,
                         pos,
